@@ -1,0 +1,65 @@
+@startuml
+
+class Address {
+  - street : String
+  - city : String
+  - postcode : String
+  + Address()
+  + Address(street : String, city : String, postcode : String)
+  + getStreet() : String
+  + getCity() : String
+  + getPostcode() : String
+}
+
+class Customer {
+  - id : Long
+  - name : String
+  - email : String
+  - address : Address
+  + Customer()
+  + Customer(id : Long, name : String, email : String, address : Address)
+  + getId() : Long
+  + getName() : String
+  + getEmail() : String
+  + getAddress() : Address
+}
+
+class Product {
+  - id : Long
+  - name : String
+  - price : Double
+  + Product()
+  + Product(id : Long, name : String, price : Double)
+  + getId() : Long
+  + setId(id : Long) : void
+  + getName() : String
+  + setName(name : String) : void
+  + getPrice() : Double
+  + setPrice(price : Double) : void
+}
+
+class ProductService {
+  - products : List<Product>
+  - nextId : long
+  + getAllProducts() : List<Product>
+  + getProductById(id : Long) : Optional<Product>
+  + addProduct(product : Product) : Product
+  + deleteProduct(id : Long) : void
+  + findByName(name : String) : List<Product>
+}
+
+class ProductController {
+  - productService : ProductService
+  + getAllProducts() : List<Product>
+  + getProductById(id : Long) : Product
+  + addProduct(product : Product) : Product
+  + deleteProduct(id : Long) : void
+  + search(name : String) : List<Product>
+}
+
+' Relationships
+Customer -> Address
+ProductController ..> ProductService
+ProductService --> Product
+
+@enduml
