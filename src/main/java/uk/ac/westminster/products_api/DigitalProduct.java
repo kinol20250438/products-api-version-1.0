@@ -8,7 +8,7 @@ public class DigitalProduct extends Product{
     public DigitalProduct() {
     }
 
-    public DigitalProduct(String downloadUrl, double fileSizeMB, Long id, String name, double price) {
+    public DigitalProduct(Long id, String name, double price,String downloadUrl, double fileSizeMB) {
         super(id, name, price);
         this.downloadUrl = downloadUrl;
         this.fileSizeMB = fileSizeMB;
