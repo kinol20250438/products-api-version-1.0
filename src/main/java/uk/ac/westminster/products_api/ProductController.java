@@ -23,8 +23,14 @@ public class ProductController {
         return productService.getProductById(id).orElse(null);
     }
 
+    @GetMapping("/products/summaries")
+    public List<Product> getProductSummaries() {
+        return productService.getAllProducts();
+    }
+
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
+    // Accept a concrete product type so Spring can deserialize the request body.
+    public Product addProduct(@RequestBody DigitalProduct product) {
         return productService.addProduct(product);
     }
 
